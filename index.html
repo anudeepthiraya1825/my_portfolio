@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Anudeepthi Raya — Portfolio</title>
+  <meta name="description" content=" Raya Anudeepthi — Aspiring Software Engineer. Portfolio showcasing projects, resume, education, and contact." />
+
+  <!-- Google font -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --accent-pink:#e60073;
+      --accent-yellow:#ffce00;
+      --bg:#ffffff;
+      --muted:#666;
+      --card:#fff;
+      --glass: rgba(255,255,255,0.6);
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%;margin:0;font-family:Inter,system-ui,Arial,Helvetica,sans-serif;background:linear-gradient(180deg,#fff 0%, #fbfbfd 100%);color:#111}
+    a{color:var(--accent-pink)}
+
+    /* Header / Navbar */
+    header{background:var(--accent-yellow);position:sticky;top:0;z-index:1200;padding:10px 18px;box-shadow:0 2px 6px rgba(0,0,0,0.04)}
+    nav{max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:space-between}
+    .brand{display:flex;align-items:center;gap:12px}
+    .brand h1{font-size:18px;margin:0;color:#111}
+    .nav-links{display:flex;gap:18px;list-style:none;margin:0;padding:0}
+    .nav-links a{font-weight:600;text-decoration:none;color:#111}
+    .nav-actions{display:flex;gap:10px;align-items:center}
+    .btn{background:var(--accent-pink);color:#fff;padding:8px 12px;border-radius:8px;text-decoration:none;font-weight:600}
+    .btn.secondary{background:#333}
+
+    /* Mobile hamburger */
+    .hamburger{display:none;cursor:pointer;padding:8px;border-radius:8px}
+    .hamburger div{width:22px;height:2px;background:#111;margin:4px 0}
+
+    main{max-width:1100px;margin:30px auto;padding:0 18px}
+
+    /* Hero */
+    .hero{display:grid;grid-template-columns:1fr 360px;gap:28px;align-items:center}
+    .intro h2{font-size:34px;margin:0 0 10px}
+    .intro p{color:var(--muted);margin:0 0 18px}
+    .hero .actions{display:flex;gap:12px;flex-wrap:wrap}
+    .avatar{background:linear-gradient(135deg,#ffe4ec,#fff);border-radius:12px;padding:18px;text-align:center;box-shadow:0 6px 18px rgba(230,6,115,0.08)}
+    .avatar img{width:100%;border-radius:8px}
+
+    /* sections */
+    section{margin-top:36px}
+    h2.section-title{font-size:22px;margin-bottom:14px;color:var(--accent-pink)}
+
+    /* cards grid */
+    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px}
+    .card{background:var(--card);padding:18px;border-radius:12px;box-shadow:0 6px 18px rgba(20,20,40,0.04)}
+    .card h3{margin:0 0 8px;color:var(--accent-pink)}
+    .badge-row{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+
+    /* education / certifications */
+    .edu-card{display:flex;flex-direction:column;gap:6px}
+    .cert-list{display:flex;flex-direction:column;gap:8px}
+
+    /* projects */
+    .projects .card p{color:var(--muted);margin:8px 0}
+    .projects a.project-link{display:inline-block;margin-top:10px;text-decoration:none;font-weight:700;color:#0165ff}
+
+    /* footer */
+    footer{margin:40px auto 20px;text-align:center;color:var(--muted)}
+
+    /* fade-in animation */
+    .fade-in{opacity:0;transform:translateY(18px);transition:opacity .8s ease,transform .8s ease}
+    .visible{opacity:1;transform:none}
+
+    /* responsive */
+    @media (max-width:900px){
+      .hero{grid-template-columns:1fr}
+      .nav-links{display:none}
+      .hamburger{display:block}
+    }
+
+    /* small devices */
+    @media (max-width:480px){
+      .intro h2{font-size:24px}
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <div class="brand">
+        <svg width="34" height="34" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="24" height="24" rx="6" fill="#E60073"/><text x="12" y="16" text-anchor="middle" font-family="Inter, Arial" font-size="12" fill="white">AR</text></svg>
+        <h1>Anudeepthi Raya</h1>
+      </div>
+
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#education">Education</a></li>
+        <li><a href="#certifications">Certifications</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+
+      <div class="nav-actions">
+        <a class="btn" href="#projects">View Work</a>
+        <a class="btn secondary" href="resume.pdf" download>Download Resume</a>
+        <div class="hamburger" id="hamburger" aria-label="menu">
+          <div></div><div></div><div></div>
+        </div>
+      </div>
+    </nav>
+    <!-- mobile menu (hidden initially) -->
+    <div id="mobileMenu" style="display:none;background:var(--accent-yellow);padding:12px;text-align:center">
+      <a href="#home" style="display:block;margin:8px 0;color:#111;font-weight:700">Home</a>
+      <a href="#about" style="display:block;margin:8px 0;color:#111;font-weight:700">About</a>
+      <a href="#education" style="display:block;margin:8px 0;color:#111;font-weight:700">Education</a>
+      <a href="#certifications" style="display:block;margin:8px 0;color:#111;font-weight:700">Certifications</a>
+      <a href="#projects" style="display:block;margin:8px 0;color:#111;font-weight:700">Projects</a>
+      <a href="#contact" style="display:block;margin:8px 0;color:#111;font-weight:700">Contact</a>
+    </div>
+  </header>
+
+  <main>
+    <!-- HERO / HOME -->
+    <section id="home" class="hero fade-in">
+      <div class="intro">
+        <h2>✨ Hey there! I'm <span style="color:var(--accent-pink)">Anudeepthi Raya</span></h2>
+        <p>Final-year B.Tech CSE student • Aspiring Software Engineer • Full‑Stack & AI/ML Enthusiast</p>
+        <div class="actions">
+          <a class="btn" href="#projects">View My Work</a>
+          <a class="btn secondary" href="resume.pdf" download>Download Resume</a>
+        </div>
+        <div style="margin-top:16px;color:var(--muted);font-size:14px">
+          <img alt="typing svg" src="https://readme-typing-svg.herokuapp.com?font=Fira+Code&pause=1000&color=FF6B6B&center=true&vCenter=true&width=450&lines=Aspiring+Software+Engineer+%F0%9F%92%BB;Full+Stack+Developer+%F0%9F%9A%80;AI+%2F+ML+Enthusiast+%F0%9F%A7%A9;Always+Exploring+New+Tech+%F0%9F%92%A1"/>
+        </div>
+      </div>
+
+      <div class="avatar card" style="align-self:start">
+        <!-- add your profile image path or keep this placeholder -->
+        <img src="https://avatars.githubusercontent.com/u/9919?s=280&v=4" alt="avatar" />
+        <p style="margin-top:10px;font-weight:600">Anudeepthi Raya</p>
+        <p style="font-size:13px;color:var(--muted)">Aspiring Software Engineer • B.Tech CSE (2026)</p>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about" class="fade-in">
+      <h2 class="section-title">🌟 About Me</h2>
+      <div class="card">
+        <p>Hi! I'm a final-year B.Tech CSE student passionate about building impactful applications that merge creativity and technology. I specialize in full-stack web development and AI/ML projects. When I'm not coding, I'm exploring AI advancements, experimenting with IoT prototypes, or drafting my next big project idea.</p>
+        <div class="badge-row" style="margin-top:14px">
+          <img src="https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white" alt="html"/>
+          <img src="https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white" alt="css"/>
+          <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black" alt="js"/>
+          <img src="https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white" alt="py"/>
+        </div>
+      </div>
+    </section>
+
+    <!-- EDUCATION -->
+    <section id="education" class="fade-in">
+      <h2 class="section-title">🎓 Education</h2>
+      <div class="grid">
+        <div class="card edu-card">
+          <h3>B.Tech in Computer Science</h3>
+          <p>QIS College of Engineering & Technology, Ongole</p>
+          <p style="color:var(--muted)">2022 — 2026 (Expected) • CGPA: 8.5+</p>
+          <p style="margin-top:8px;color:var(--muted)"><strong>Relevant:</strong> Web Development, Data Structures, Databases, AI/ML</p>
+        </div>
+        <div class="card edu-card">
+          <h3>Intermediate (Class 12)</h3>
+          <p>Viswabharathi Junior College</p>
+          <p style="color:var(--muted)">2020 — 2022</p>
+<p style="color:var(--muted)">2022 — 2026 (Expected) • percentage:90.4%</p>
+        </div>
+        <div class="card edu-card">
+          <h3>Secondary School (Class 10)</h3>
+          <p>zilla parshidh High School</p>
+          <p style="color:var(--muted)">2019-2020</p>
+<p style="color:var(--muted)">2022 — 2026 (Expected) • CGPA: 10.0+</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- CERTIFICATIONS -->
+    <section id="certifications" class="fade-in">
+      <h2 class="section-title">🏅 Certifications</h2>
+      <div class="card cert-list">
+        <div>• Frontend Development with JavaScript — Coursera</div>
+        <div>• Responsive Web Design — freeCodeCamp</div>
+        <div>• JavaScript Algorithms & Data Structures — freeCodeCamp</div>
+        <div>• AWS AI-ML Virtual Internship — AICTE</div>
+        <div>• Git & GitHub Basics — GitHub Learning</div>
+      </div>
+    </section>
+
+    <!-- PROJECTS -->
+    <section id="projects" class="fade-in">
+      <h2 class="section-title">🔥 Featured Projects</h2>
+      <div class="projects">
+
+        <div class="card">
+          <h3>🛡 Blockchain-Based Digital Identity Verification</h3>
+          <p>Multi-authentication system (Password + OTP + Face Recognition). Stores verified identity hashes on blockchain for tamper-proof records. Flask backend with MySQL and JavaScript/OpenCV biometric capture.</p>
+          <p style="color:var(--muted)"><strong>Tech:</strong> Python • Flask • MySQL • OpenCV • Blockchain</p>
+          <a class="project-link" href="https://github.com/anudeepthiraya/blockchain-identity" target="_blank">🔗 View on GitHub</a>
+        </div>
+
+        <div class="card">
+          <h3>🏥 Medical Recommender System</h3>
+          <p>AI-based system recommending personalized treatments and medicines using patient history and symptom analysis. Includes fuzzy logic & ML models.</p>
+          <p style="color:var(--muted)"><strong>Tech:</strong> Python • Flask • MongoDB • scikit-learn</p>
+          <a class="project-link" href="https://github.com/anudeepthiraya/medical-recommender" target="_blank">🔗 View on GitHub</a>
+        </div>
+
+        <div class="card">
+          <h3>📊 Power BI Sales Dashboard</h3>
+          <p>Interactive dashboard for sales data visualization with dynamic KPIs, slicers, and Power Query transformations.</p>
+          <p style="color:var(--muted)"><strong>Tech:</strong> Power BI • Excel • Power Query</p>
+          <a class="project-link" href="https://github.com/anudeepthiraya/powerbi-sales-dashboard" target="_blank">🔗 View on GitHub</a>
+        </div>
+
+        <div class="card">
+          <h3>🌐 Personal Portfolio Website</h3>
+          <p>Responsive personal website built with HTML, CSS, and JavaScript. Showcases projects, resume, and contact information. Deployed on GitHub Pages/Netlify.</p>
+          <a class="project-link" href="https://github.com/anudeepthiraya/portfolio-website" target="_blank">🔗 Live / Source</a>
+        </div>
+
+        <div class="card">
+          <h3>✅ Task Tracker App</h3>
+          <p>Vanilla JavaScript task management app with create/edit/delete and persistence via LocalStorage. Responsive UI using Bootstrap.</p>
+          <a class="project-link" href="https://github.com/anudeepthiraya/task-tracker" target="_blank">🔗 View on GitHub</a>
+        </div>
+
+        <div class="card">
+          <h3>🌦 Weather Forecast App</h3>
+          <p>Weather app integrating OpenWeather API. Shows temperature, humidity, and condition with responsive UI.</p>
+          <a class="project-link" href="https://github.com/anudeepthiraya/weather-app" target="_blank">🔗 View on GitHub</a>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" class="fade-in">
+      <h2 class="section-title">📬 Contact</h2>
+      <div class="card" style="text-align:center">
+        <p style="margin-bottom:8px">Email: <a href="mailto:anudeepthiraya@gmail.com">anudeepthiraya@gmail.com</a></p>
+        <p style="margin-bottom:8px">GitHub: <a href="https://github.com/anudeepthiraya" target="_blank">github.com/anudeepthiraya</a></p>
+        <p>LinkedIn: <a href="https://www.linkedin.com/in/raya-anu-deepthi-8b60b5274/" target="_blank">linkedin.com/in/raya-anu-deepthi</a></p>
+        <div style="margin-top:12px">
+          <a class="btn" href="mailto:anudeepthiraya@gmail.com">Email Me</a>
+          <a class="btn secondary" href="resume.pdf" download style="margin-left:10px">Download Resume</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <p>⭐ If you like my work, star my repositories! • © 2025 Anudeepthi Raya</p>
+  </footer>
+
+  <script>
+    // Mobile menu toggle
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobileMenu');
+    hamburger.addEventListener('click', ()=>{
+      if(mobileMenu.style.display === 'none' || mobileMenu.style.display === '') mobileMenu.style.display = 'block'; else mobileMenu.style.display = 'none';
+    });
+
+    // Intersection Observer for fade-in
+    const faders = document.querySelectorAll('.fade-in');
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); });
+    },{threshold:0.15});
+    faders.forEach(f => io.observe(f));
+
+    // Smooth scrolling for older browsers (anchor links already smooth via CSS on modern browsers)
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        const href = this.getAttribute('href');
+        if(href.startsWith('#')){
+          e.preventDefault();
+          const el = document.querySelector(href);
+          if(el) el.scrollIntoView({behavior:'smooth'});
+          // hide mobile menu after click
+          if(window.innerWidth < 900) mobileMenu.style.display = 'none';
+        }
+      });
+    });
+  </script>
+</body>
+</html>
